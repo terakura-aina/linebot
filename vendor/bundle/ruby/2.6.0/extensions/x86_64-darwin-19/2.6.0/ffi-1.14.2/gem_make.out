@@ -1,5 +1,5 @@
 current directory: /Users/user/workspace/runteq/line_bot/linebot/vendor/bundle/ruby/2.6.0/gems/ffi-1.14.2/ext/ffi_c
-/Users/user/.rbenv/versions/2.6.3/bin/ruby -I /Users/user/.rbenv/versions/2.6.3/lib/ruby/2.6.0 -r ./siteconf20210117-18890-g3txal.rb extconf.rb
+/Users/user/.rbenv/versions/2.6.6/bin/ruby -I /Users/user/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210118-33034-1m49rs5.rb extconf.rb
 checking for ffi_prep_closure_loc() in -lffi... yes
 checking for ffi_prep_cif_var()... yes
 checking for ffi_raw_call()... yes
@@ -39,4 +39,4 @@ linking shared-object ffi_c.bundle
 
 current directory: /Users/user/workspace/runteq/line_bot/linebot/vendor/bundle/ruby/2.6.0/gems/ffi-1.14.2/ext/ffi_c
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20210117-18890-lj0qrg
+/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20210118-33034-35oskh

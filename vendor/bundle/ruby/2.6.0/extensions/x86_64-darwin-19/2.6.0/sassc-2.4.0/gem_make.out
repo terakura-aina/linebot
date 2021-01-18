@@ -1,5 +1,5 @@
 current directory: /Users/user/workspace/runteq/line_bot/linebot/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
-/Users/user/.rbenv/versions/2.6.3/bin/ruby -I /Users/user/.rbenv/versions/2.6.3/lib/ruby/2.6.0 -r ./siteconf20210117-18890-r6gonl.rb extconf.rb
+/Users/user/.rbenv/versions/2.6.6/bin/ruby -I /Users/user/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210118-33034-1bvuxi5.rb extconf.rb
 creating Makefile
 
 current directory: /Users/user/workspace/runteq/line_bot/linebot/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
@@ -77,4 +77,4 @@ linking shared-object sassc/libsass.bundle
 
 current directory: /Users/user/workspace/runteq/line_bot/linebot/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 libsass.bundle ./.gem.20210117-18890-6m9sd8/sassc
+/usr/bin/install -c -m 0755 libsass.bundle ./.gem.20210118-33034-1pjvx82/sassc
