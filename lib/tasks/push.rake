@@ -3,7 +3,7 @@ namespace :push do
   task push_line_message: :environment do # 以下にpush機能のタスクを書く。
     message = {
       type: 'text',
-      text: 'Date me!実装準備です'
+      text: 'Date me!実装準備です。'
     }
     client = Line::Bot::Client.new { |config|
       config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
