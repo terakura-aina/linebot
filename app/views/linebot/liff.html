@@ -3,12 +3,23 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIFF Starter</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- load jquery -->
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <!-- load LIFF SDK -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </head>
 
   <body>
     <div>Hello <span id="name">world</span>さん!</div>
+    <h1 id="displaynamefield"></h1>
+    <button type="button" class="btn btn-danger" id="logout" onclick="LogoutAction();">ログアウト</button>
+
+    <form id="send-message">
+        <p>送信したいメッセージを入れてね</p>
+        <input type="text" id="message" name="message" size="30" placeholder="メッセージを入力">
+        <button id="send" class="btn btn-primary">送信</button>
+    </form>
+
     </body>
     <script>
     // LIFFの初期化を行う
@@ -29,12 +40,6 @@
     })
     })
 
-    if (liff.isApiAvailable('shareTargetPicker')) {
-      liff.shareTargetPicker([
-        {
-          type: "text",
-          text: "Hello, World!"
-        }
-      ])
-    }
+    // シェアターゲットピッカーの設定
+
     </script>
