@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <div>Hello <span id="name">world</span>.</div>
+    <div>Hello <span id="name">world</span>さん!</div>
     </body>
     <script>
     // LIFFの初期化を行う
@@ -28,4 +28,13 @@
     document.querySelector("#name").innerText = name
     })
     })
+
+    if (liff.isApiAvailable('shareTargetPicker')) {
+      liff.shareTargetPicker([
+        {
+          type: "text",
+          text: "Hello, World!"
+        }
+      ])
+    }
     </script>
