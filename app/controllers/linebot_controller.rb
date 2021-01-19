@@ -5,6 +5,8 @@ class LinebotController < ApplicationController
 
   def liff; end
 
+  def dateme; end
+
   def callback
     client = Line::Bot::Client.new { |config|
       config.channel_secret = ENV["LINE_CHANNEL_SECRET"]

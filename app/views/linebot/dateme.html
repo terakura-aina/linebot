@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date me!</title>
+    <!-- load jquery -->
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <!-- load LIFF SDK -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div>現在のユーザーの生のIDトークン <span id="idToken">id</span></div>
+  </body>
+  <script>
+  liff
+    .init({
+      liffId: "1655589524-yJ8XlxLV" // Use own liffId
+    })
+    .then(() => {
+        const idToken = liff.getIDToken();
+        document.querySelector("#idToken").innerText = idToken
+        console.log(idToken) // print raw idToken object
+    })
+  </script>
