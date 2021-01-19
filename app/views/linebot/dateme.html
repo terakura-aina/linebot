@@ -22,4 +22,24 @@
         document.querySelector("#idToken").innerText = idToken
         console.log(idToken) // print raw idToken object
     })
+    .then(() => {
+          //LINEアプリで起動しているかどうかとログインをしているのかを判断している
+          if (!liff.isInClient() && !liff.isLoggedIn()){
+            window.alert("LINEアカウントにログインしてください。");
+            liff.login();
+          }else{
+            // start to use LIFF's api
+            liff.getProfile().then(function(profile) {
+              document.getElementById('displaynamefield').textContent = 'ようこそ' + profile.displayName + 'さん';
+              userId = profile.userId;
+              if (!liff.isInClient()){
+                document.getElementById("logout").style.display = "block"
+              }
+            })
+          }
+
+    })
+    .catch((err) => {
+      document.getElementById('displaynamefield').textContent = err;
+    });
   </script>
