@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="jp" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XP LIFF</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+      liff
+        .init({
+          liffId: '1655592642-mxP7Mkkp'
+        })
+        .then(() => {
+          document.getElementById('go').addEventListener('click', () => {
+            liff.getProfile().then(function(profile) {
+              document.getElementById('log').value += 'liff.getProfile()=' + JSON.stringify(profile) + '\n';
+            }).catch(function(error) {
+              document.getElementById('log').value += 'getProfile ng\n';
+            });
+          });
+        })
+        .catch((err) => {
+          document.getElementById('log').value = 'init ng\n' + err;
+        });
+    });
+    </script>
+  </head>
+  <body>
+    <div>
+      <h3>プロフィールを取得する</h3>
+      <input type="button" id="go" value="実行"/>
+      <textarea id="log" style="width:96%;height:100px;"></textarea>
+    </div>
+    <div>
+      <h3>デートの日時</h3>
+      <%= form_with url: dateme_path do |f| %>
+        <div class="form-group">
+          <%= f.label :created_at, :開始時間, class: 'control-label' %>
+          <%= f.datetime_field :created_at, class: 'form-control' %>
+        </div>
+      <% end %>
+    </div>
+  </body>
+</html>
