@@ -5,6 +5,8 @@ ruby '2.6.6'
 gem 'line-bot-api'
 gem 'dotenv-rails'
 gem 'whenever', require: false
+gem 'slim-rails'
+gem 'html2slim'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
