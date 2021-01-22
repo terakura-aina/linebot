@@ -34,5 +34,12 @@ window.addEventListener('load', () => {
          sub_field.append(data.sub)
         })
 
+      liff.shareTargetPicker([{
+        'type': 'text',
+        'text': 'デートのお誘いです'
+      }]).catch(function (error) {
+        window.alert('Failed to send message ' + error);
+      });
+
   })
 })

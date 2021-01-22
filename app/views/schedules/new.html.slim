@@ -3,12 +3,12 @@ h1
 p#sub
   |ユーザーID:
 
-= form_with model:@schedule do |f|
-  = f.label :start_planed_day_at, :開始時間, class: 'control-label'
-  = f.datetime_field :start_planed_day_at, class: 'form-control'
+= form_with model:@schedule, url:schedules_path, scope: :schedule do |f|
+  = f.label :start_planned_day_at, :開始時間, class: 'control-label'
+  = f.datetime_field :start_planned_day_at, class: 'form-control'
   br
-  = f.label :finish_planed_day_at, :終了予定時間, class: 'control-label'
-  = f.datetime_field :finish_pland_day_at, class: 'form-control'
+  = f.label :finish_planned_day_at, :終了予定時間, class: 'control-label'
+  = f.datetime_field :finish_planned_day_at, class: 'form-control'
   br
   = f.label :place, :行き先, class: 'control-label'
   = f.text_field :place, class: 'form-control'
