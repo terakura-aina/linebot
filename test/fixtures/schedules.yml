@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_planned_day_at: 2021-01-22 14:26:16
+  finish_planned_day_at: 2021-01-22 14:26:16
+  place: MyText
+  other: MyText
+  answer: 1
+
+two:
+  start_planned_day_at: 2021-01-22 14:26:16
+  finish_planned_day_at: 2021-01-22 14:26:16
+  place: MyText
+  other: MyText
+  answer: 1

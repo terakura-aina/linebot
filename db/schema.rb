@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_063751) do
+ActiveRecord::Schema.define(version: 2021_01_22_052616) do
 
   create_table "missions", force: :cascade do |t|
     t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.datetime "start_planned_day_at", null: false
+    t.datetime "finish_planned_day_at", null: false
+    t.text "place"
+    t.text "other"
+    t.integer "answer", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
