@@ -7,6 +7,7 @@ gem 'dotenv-rails'
 gem 'whenever', require: false
 gem 'slim-rails'
 gem 'html2slim'
+gem 'bootstrap'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'

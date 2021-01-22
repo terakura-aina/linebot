@@ -1,28 +1,19 @@
 h1
   |Profile
-button#getProfile
-  |getProfile
-p#iss
-  |iss:
 p#sub
-  |sub:
-P#aud
-  |aud:
-p#exp
-  |exp:
-p#iat
-  |iat:
-p#authTime
-  |auth_time:
-p#nonce
-  |nonce:
-p#amr
-  |amr:
-p#name
-  |name:
-p#picture
-  |picture:
-p#email
-  |email:
+  |ユーザーID:
+
+= form_with url: dateme_path do |f|
+  = f.label :start_planed_day_at, :開始時間, class: 'control-label'
+  = f.datetime_field :published_at, class: 'form-control'
+  br
+  = f.label :finish_planed_day_at, :終了予定時間, class: 'control-label'
+  = f.datetime_field :published_at, class: 'form-control'
+  br
+  = f.label :place, :行き先, class: 'control-label'
+  = f.text_field :published_at, class: 'form-control'
+
+button#getProfile
+  |お誘いをする
 
 = javascript_pack_tag 'schedules/new'
