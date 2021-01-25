@@ -1,9 +1,9 @@
 h1
-  |Profile
+  |デートのお誘い
 p#sub
   |ユーザーID:
 
-= form_with model:@schedule, url:schedules_path, scope: :schedule do |f|
+= form_with model: @schedule, :html => { class: "form"} do |f|
   = f.label :start_planned_day_at, :開始時間, class: 'control-label'
   = f.datetime_field :start_planned_day_at, class: 'form-control'
   br

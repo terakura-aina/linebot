@@ -1,7 +1,6 @@
 window.addEventListener('load', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   const getProfileButton = document.querySelector("#getProfile")
-  const sub_field = document.querySelector("#sub")
   // 他のメソッドを実行できるようになるための作業
   liff.init({
     liffId: "1655592642-mxP7Mkkp"
@@ -16,10 +15,11 @@ window.addEventListener('load', () => {
   });
 
   getProfileButton.addEventListener('click', () => {
-    let idToken = liff.getIDToken()
+    // idTokenからユーザーIDを取得する
+    const idToken = liff.getIDToken()
     console.log(idToken)
-    let body =`idToken=${idToken}`
-    let request = new Request('/schedules', {
+    const body =`idToken=${idToken}`
+    const request = new Request('/schedules', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
         'X-CSRF-Token': token
@@ -31,15 +31,32 @@ window.addEventListener('load', () => {
     .then(response => response.json())
       .then(data => {
          console.log(data)
-         sub_field.append(data.sub)
-        })
+        });
 
-      liff.shareTargetPicker([{
+    // フォームの内容をpostしてokが返ってきたらshareTargetPickerを開く
+    const form = document.querySelector('.form')
+    const data = new FormData(form)
+    fetch('/schedules', {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+      }
+    })
+    .then(response => response.json())
+      .then(liff.shareTargetPicker([
+        {
         'type': 'text',
         'text': 'デートのお誘いです'
-      }]).catch(function (error) {
-        window.alert('Failed to send message ' + error);
-      });
-
+        },
+        {
+        'type': 'text',
+        'text': 'こんにちは'
+        }
+      ]))
+    .catch(error => {
+      console.log('失敗しました')
+    })
   })
 })
