@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_22_052616) do
+ActiveRecord::Schema.define(version: 2021_01_26_011056) do
 
   create_table "missions", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "schedule_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "schedule_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["schedule_id"], name: "index_schedule_users_on_schedule_id"
+    t.index ["user_id"], name: "index_schedule_users_on_user_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -34,4 +43,6 @@ ActiveRecord::Schema.define(version: 2021_01_22_052616) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "schedule_users", "schedules"
+  add_foreign_key "schedule_users", "users"
 end

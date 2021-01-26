@@ -14,14 +14,15 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    @schedule = Schedule.new(schedule_params)
-    @schedule.save!
-
     idToken = params[:idToken]
     channelId = '1655592642'
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),
                           {'id_token'=>idToken, 'client_id'=>channelId})
     render :json => res.body
+
+    @schedule = Schedule.new(schedule_params)
+    @schedule.save!
+
   end
 
   def edit
