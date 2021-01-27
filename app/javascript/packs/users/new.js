@@ -32,8 +32,5 @@ window.addEventListener('load', () => {
       .then(data => {
          console.log(data)
         });
-
-    // フォームの内容をpostしてokが返ってきたらshareTargetPickerを開く
-    
   })
 })

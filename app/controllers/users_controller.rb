@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
   def new
-    @user = User.new
   end
 
   def create
-    debugger
     idToken = params[:idToken]
     channelId = '1655592642'
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),
@@ -14,6 +12,8 @@ class UsersController < ApplicationController
     if nil == User.find_by(line_user_id: obj["sub"])
       @user = User.new(line_user_id: obj["sub"])
       @user.save
+    else
+      @user = User.find_by(line_user_id: obj["sub"])
     end
   end
 

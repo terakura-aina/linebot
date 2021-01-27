@@ -1,6 +1,4 @@
 class SchedulesController < ApplicationController
-  # CSRH対策で外部からのアクションを拒否されてしまうので、以下で対処
-  protect_from_forgery :except => [:create]
   require 'net/http'
   require 'uri'
   def index
@@ -16,7 +14,6 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     @schedule.save!
-
   end
 
   def edit

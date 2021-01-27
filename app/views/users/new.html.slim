@@ -1,7 +1,7 @@
 h1 Users#new
 p Find me in app/views/users/new.html.slim
 
-button#getProfile
-  |getProfile
+
+= link_to "デートのお誘いをする", new_schedule_path, class: 'btn btn-default',id: 'getProfile'
 
 = javascript_pack_tag 'users/new'

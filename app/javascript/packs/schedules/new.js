@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   const getProfileButton = document.querySelector("#getProfile")
   // 他のメソッドを実行できるようになるための作業
