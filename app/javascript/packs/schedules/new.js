@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
         'type': 'text',
-        'text': 'こんにちは'
+        'text': 'schedules#showページのURL'
         }
       ]))
     .catch(error => {
