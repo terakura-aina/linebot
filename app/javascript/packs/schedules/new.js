@@ -33,5 +33,31 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
          console.log(data)
         });
+
+     // フォームの内容をpostしてokが返ってきたらshareTargetPickerを開く
+     const form = document.querySelector('.form')
+     const data = new FormData(form)
+     fetch('/schedules', {
+       method: 'POST',
+       body: data,
+       headers: {
+         'Accept': 'application/json',
+         //'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+       }
+     })
+     .then(response => response.json())
+       .then(liff.shareTargetPicker([
+         {
+         'type': 'text',
+         'text': 'デートのお誘いです'
+         },
+         {
+         'type': 'text',
+         'text': 'schedules#showページのURL'
+         }
+       ]))
+     .catch(error => {
+       console.log('失敗しました')
+     })
   })
 })

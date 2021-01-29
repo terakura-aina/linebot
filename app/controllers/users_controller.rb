@@ -8,12 +8,13 @@ class UsersController < ApplicationController
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),
                           {'id_token'=>idToken, 'client_id'=>channelId})
     render :json => res.body
-    obj = JSON.parse(res.body);
-    if nil == User.find_by(line_user_id: obj["sub"])
-      @user = User.new(line_user_id: obj["sub"])
-      @user.save
+    line_user_id = JSON.parse(res.body)["sub"]
+    user = User.find_by(line_user_id: line_user_id)
+    if user.nil?
+      user = User.new(line_user_id: line_user_id)
+      user.save
     else
-      @user = User.find_by(line_user_id: obj["sub"])
+      session[:user_id] = user.id
     end
   end
 
