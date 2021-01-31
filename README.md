@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### line bot練習用です
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###環境変数について
+下記の設定をしてください。  
+LINE Developersでチャネル作成をすると取得できます。
+```
+LINE_CHANNEL_SECRET=チャネルシークレットの値
+LINE_CHANNEL_TOKEN=チャネルアクセストークンの値
+LINE_CHANNEL_USER_ID=ユーザーIDの値
+```
