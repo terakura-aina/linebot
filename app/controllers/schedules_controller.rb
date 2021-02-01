@@ -5,6 +5,7 @@ class SchedulesController < ApplicationController
   end
 
   def show
+    @schedule = Schedule.find(params[:id])
   end
 
   def new
@@ -24,7 +25,7 @@ class SchedulesController < ApplicationController
           "emojiId": "001"
         }
       ]
-  }
+    }
     client = Line::Bot::Client.new { |config|
       config.channel_secret = ENV['LINE_CHANNEL_SECRET']
       config.channel_token = ENV['LINE_CHANNEL_TOKEN']
@@ -34,6 +35,7 @@ class SchedulesController < ApplicationController
   end
 
   def edit
+    @schedule = Schedule.find(params[:id])
   end
 
   def update
