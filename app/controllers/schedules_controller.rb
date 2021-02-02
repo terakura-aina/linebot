@@ -14,7 +14,12 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = Schedule.new(schedule_params)
-    @schedule.save!
+    if@schedule.save
+      json_string = ScheduleSerializer.new(@schedule).serialized_json
+      render json: json_string
+    else
+      render status: 400, json: { status: 400, message: 'Bad Request' }
+    end
     message = {
       "type": "text",
       "text": "デートのお誘いをしています！\nお返事があるまでお待ちください $",

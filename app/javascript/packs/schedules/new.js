@@ -50,9 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/schedules', {
       method: 'POST',
       body: schedule,
-
     })
-    .then(response => response.text())
-  .then(data => console.log(data))
+    .then(response => response.json())
+    .then(data => console.log(data))
   })
 })

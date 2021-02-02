@@ -8,6 +8,7 @@ gem 'whenever', require: false
 gem 'slim-rails'
 gem 'html2slim'
 gem 'bootstrap'
+gem 'fast_jsonapi'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
