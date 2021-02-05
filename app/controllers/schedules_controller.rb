@@ -15,9 +15,7 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     if@schedule.save
-      json_string = ScheduleSerializer.new(@schedule).serialized_json
-      json_string = JSON.parse(json_string)["data"]["id"]
-      render json: json_string
+      render json: @schedule
       message = {
         "type": "text",
         "text": "デートのお誘いをしています！\nお返事があるまでお待ちください $",
