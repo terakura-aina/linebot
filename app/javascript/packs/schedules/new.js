@@ -30,11 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(err.code, err.message);
   });
 
-  const postFormElm = document.querySelector('#form')
-  postFormElm.addEventListener('ajax:success', (e) => {
-    console.log(e.detail[0])
-  })
-
   getProfileButton.addEventListener('click', () => {
     // フォームの内容をpostしてokが返ってきたらshareTargetPickerを開く
     const postFormElm = document.querySelector('#form')
