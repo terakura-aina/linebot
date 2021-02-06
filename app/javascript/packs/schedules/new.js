@@ -30,48 +30,33 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(err.code, err.message);
   });
 
-  getProfileButton.addEventListener('click', () => {
-    // フォームの内容をpostしてokが返ってきたらshareTargetPickerを開く
-    const postFormElm = document.querySelector('#form')
-    postFormElm.addEventListener('ajax:success', (e) => {
-      console.log(e.detail[0])
+  // フォームの内容をpostしてokが返ってきたらshareTargetPickerを開く
+  const postFormElm = document.querySelector('#form')
+  postFormElm.addEventListener('ajax:success', (e) => {
+    console.log(e.detail[0])
 
-      // ここでshared target pickerを呼び出す
-      const redirect_url = `https://liff.line.me/1655592642-lkGjn55v/schedules/${e.detail[0].id}/edit`
-      liff.shareTargetPicker([
-        {
-        'type': 'text',
-        'text': 'デートのお誘いです'
-        },
-        {
-        'type': 'text',
-        'text': redirect_url
-        }
-      ]).then((res) => {
-        if (res) {
-          // TargetPickerが送られたら
-          liff.closeWindow();
-        } else {
-          // TargetPickerを送らずに閉じたら
-          console.log('TargetPicker was closed!')
-          liff.closeWindow();
-        }
-      }).catch(function (res) {
-        alert("失敗したよ")
-      });
-    })
-
-       // make_planテーブルにinvited_idを保存するための処理
-    // const req = new Request('/schedules/:schedule_id/make_plans', {
-    //   headers: {
-    //     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-    //     'X-CSRF-Token': token
-    //   },
-    //   method: 'POST',
-    //   body: body
-    // });
-    // fetch(req)
-    // .then(response => response.json())
-    // .then(data => console.log(data))
+    // ここでshared target pickerを呼び出す
+    const redirect_url = `https://liff.line.me/1655592642-lkGjn55v/schedules/${e.detail[0].id}/edit`
+    liff.shareTargetPicker([
+      {
+      'type': 'text',
+      'text': 'デートのお誘いです'
+      },
+      {
+      'type': 'text',
+      'text': redirect_url
+      }
+    ]).then((res) => {
+      if (res) {
+        // TargetPickerが送られたら
+        liff.closeWindow();
+      } else {
+        // TargetPickerを送らずに閉じたら
+        console.log('TargetPicker was closed!')
+        liff.closeWindow();
+      }
+    }).catch(function (res) {
+      alert("送信に失敗しました…")
+    });
   })
 })
