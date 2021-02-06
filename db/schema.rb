@@ -13,12 +13,12 @@
 ActiveRecord::Schema.define(version: 2021_01_29_141330) do
 
   create_table "make_plans", force: :cascade do |t|
-    t.integer "invited_id"
+    t.integer "inviter_id"
     t.integer "partner_id"
     t.integer "schedule_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["invited_id"], name: "index_make_plans_on_invited_id"
+    t.index ["inviter_id"], name: "index_make_plans_on_inviter_id"
     t.index ["partner_id"], name: "index_make_plans_on_partner_id"
     t.index ["schedule_id"], name: "index_make_plans_on_schedule_id"
   end
@@ -34,9 +34,12 @@ ActiveRecord::Schema.define(version: 2021_01_29_141330) do
     t.datetime "finish_planned_day_at", null: false
     t.text "place"
     t.text "other"
+    t.text "token"
+    t.integer "inviter_id"
     t.integer "answer", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["inviter_id"], name: "index_schedules_on_inviter_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,4 +49,7 @@ ActiveRecord::Schema.define(version: 2021_01_29_141330) do
   end
 
   add_foreign_key "make_plans", "schedules"
+  add_foreign_key "make_plans", "users", column: "inviter_id"
+  add_foreign_key "make_plans", "users", column: "partner_id"
+  add_foreign_key "schedules", "users", column: "inviter_id"
 end

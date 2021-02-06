@@ -14,7 +14,7 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = Schedule.new(schedule_params)
-    if@schedule.save
+    if@schedule.update(token: SecureRandom.hex(32),inviter_id: 1)
       render json: @schedule
       message = {
         "type": "text",
