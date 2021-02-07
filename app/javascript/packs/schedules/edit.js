@@ -1,4 +1,5 @@
-window.addEventListener('load', () => {
+debugger
+document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   const getProfileButton = document.querySelector("#getProfile")
   const sub_field = document.querySelector("#sub")

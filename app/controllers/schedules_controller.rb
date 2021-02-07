@@ -4,10 +4,6 @@ class SchedulesController < ApplicationController
   def index
   end
 
-  def show
-    @schedule = Schedule.find(params[:id])
-  end
-
   def new
     @schedule = Schedule.new
   end
@@ -39,10 +35,12 @@ class SchedulesController < ApplicationController
   end
 
   def edit
-    @schedule = Schedule.find(params[:id])
+    @schedule = Schedule.find_by(token: params[:token])
   end
 
   def update
+    @schedule = Schedule.find_by(token: params[:token])
+    @schedule.update(answer: 1)
   end
 
   def destroy

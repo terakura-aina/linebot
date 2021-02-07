@@ -24,7 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetch(request)
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => {
+    data_id = data.id
+  })
   })
   .catch((err) => {
     console.log(err.code, err.message);
@@ -36,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(e.detail[0])
 
     // ここでshared target pickerを呼び出す
-    const redirect_url = `https://liff.line.me/1655592642-lkGjn55v/schedules/${e.detail[0].id}/edit`
+    const redirect_url = `https://liff.line.me/1655592642-lkGjn55v/schedules/${e.detail[0].token}?inviter_id=${data_id}`
     liff.shareTargetPicker([
       {
       'type': 'text',

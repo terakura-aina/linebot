@@ -13,4 +13,3 @@ html
     - flash.each do |message_type, message|
       = content_tag(:div, message, class: message_type)
     = yield
-    = javascript_pack_tag 'schedules/new'
