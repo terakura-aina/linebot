@@ -17,6 +17,7 @@ p
   br
   = @schedule.other
   br
-  = link_to "OKする", schedule_path(@schedule.id), :method => "PATCH", id: 'ok', remote: true
+  = link_to "OKする", schedule_path(@schedule.id), data: { confirm: 'パートナーにOKの通知をします。よろしいですか?' },
+                                                 method: :PATCH, id: 'ok', remote: true
 
 = javascript_pack_tag 'schedules/edit'

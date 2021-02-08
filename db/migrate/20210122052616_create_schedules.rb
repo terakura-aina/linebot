@@ -5,7 +5,7 @@ class CreateSchedules < ActiveRecord::Migration[6.1]
       t.datetime :finish_planned_day_at, null: false
       t.text :place
       t.text :other
-      t.text :token
+      t.text :token, null: false
       t.references :inviter, foreign_key: { to_table: :users }
       t.integer :answer,null: false, default: 0
 
