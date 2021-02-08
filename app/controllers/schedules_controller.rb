@@ -9,8 +9,10 @@ class SchedulesController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user_id])
     @schedule = Schedule.new(schedule_params)
-    if@schedule.update(token: SecureRandom.hex(32),inviter_id: 1)
+    if @schedule.update(token: SecureRandom.hex(32),inviter_id: @user.id)
+      @schedule.update(token: SecureRandom.hex(32))
       render json: @schedule
       message = {
         "type": "text",
@@ -39,16 +41,19 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    @schedule = Schedule.find_by(token: params[:token])
+    @schedule = Schedule.find(params[:id])
     @schedule.update(answer: 1)
+    render json: @schedule
   end
 
   def destroy
+    @schedule = Schedule.find(params[:id])
+    @schedule.destroy!
   end
 
   private
 
   def schedule_params
-    params.require(:schedule).permit(:start_planned_day_at, :finish_planned_day_at, :place, :other)
+    params.require(:schedule).permit(:start_planned_day_at, :finish_planned_day_at, :place, :other, :inviter_id)
   end
 end

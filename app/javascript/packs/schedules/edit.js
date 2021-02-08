@@ -1,8 +1,6 @@
-debugger
 document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  const getProfileButton = document.querySelector("#getProfile")
-  const sub_field = document.querySelector("#sub")
+
   // 他のメソッドを実行できるようになるための作業
   liff.init({
     liffId: "1655592642-lkGjn55v"
@@ -12,7 +10,54 @@ document.addEventListener('DOMContentLoaded', () => {
       liff.login();
     }
   })
-  .catch((err) => {
-    console.log(err.code, err.message);
-  });
+  .then(() => {
+    const postFormElm = document.querySelector('#ok')
+    postFormElm.addEventListener('ajax:success', (e) => {
+      console.log(e.detail[0])
+      const scheduleToken = e.detail[0].token
+
+      // partnerのline_user_idを保存するための処理
+      const idToken = liff.getIDToken()
+      console.log(idToken)
+      const body =`idToken=${idToken}`
+      const request = new Request('/users', {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+          'X-CSRF-Token': token
+        },
+        method: 'POST',
+        body: body
+      });
+
+      fetch(request)
+      .then(response => response.json())
+      .then(data => {
+        dataId = data.id
+      })
+      .then(() => {
+      // make_plansテーブルに保存するための処理
+        const data =`idToken=${idToken}&dataId=${dataId}&scheduleToken=${scheduleToken}`
+        const req = new Request('/make_plans', {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+            'X-CSRF-Token': token
+          },
+          method: 'POST',
+          body: data
+        });
+
+        fetch(req)
+        .then(response => response.json())
+        .then(data => {
+          data_id = data.id
+        })
+      })
+      .then(() => {
+        liff.closeWindow();
+      })
+      .catch((err) => {
+        console.log(err.code, err.message);
+      });
+    })
+  })
 })
