@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
       liff.login();
     }
     // idTokenからユーザーIDを取得し、userテーブルに保存するための処理
+  })
+  .then(() => {
     const idToken = liff.getIDToken()
     console.log(idToken)
     const body =`idToken=${idToken}`
@@ -22,13 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
       body: body
     });
 
-  fetch(request)
-  .then(response => response.json())
-  .then(data => console.log(data))
+    fetch(request)
+    .then(response => response.json())
+    .then(data => {
+      data_id = data.id
+    })
   })
-  .catch((err) => {
-    console.log(err.code, err.message);
-  });
 
   // フォームの内容をpostしてokが返ってきたらshareTargetPickerを開く
   const postFormElm = document.querySelector('#form')
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(e.detail[0])
 
     // ここでshared target pickerを呼び出す
-    const redirect_url = `https://liff.line.me/1655592642-lkGjn55v/schedules/${e.detail[0].id}/edit`
+    const redirect_url = `https://411f7c656b29.ngrok.io/schedules/${e.detail[0].token}?inviter_id=${data_id}`
     liff.shareTargetPicker([
       {
       'type': 'text',

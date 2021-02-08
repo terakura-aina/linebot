@@ -1,4 +1,6 @@
 class MakePlansController < ApplicationController
+  require 'net/http'
+  require 'uri'
 
   def create
     idToken = params[:idToken]
@@ -6,9 +8,14 @@ class MakePlansController < ApplicationController
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),
                           {'id_token'=>idToken, 'client_id'=>channelId})
     render :json => res.body
-    line_user_id = JSON.parse(res.body)["sub"]
-    user = User.find_by(line_user_id: line_user_id)
-    plan = MakePlan.new(invited_id: user.id, schedule_id: 194)
+    partner_id = params[:dataId]
+    inviter_id = Schedule.find_by(token: params[:scheduleToken]).inviter_id
+    schedule = Schedule.find_by(token: params[:scheduleToken])
+    plan = MakePlan.new(inviter_id: inviter_id, partner_id: partner_id,schedule_id: schedule.id)
     plan.save!
+  end
+
+  def new
+    @schedule = Schedule.find_by(token: params[:token])
   end
 end
