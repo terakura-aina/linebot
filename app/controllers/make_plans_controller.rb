@@ -3,6 +3,7 @@ class MakePlansController < ApplicationController
   require 'uri'
 
   def create
+    debugger
     idToken = params[:idToken]
     channelId = '1655592642'
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),
@@ -12,7 +13,8 @@ class MakePlansController < ApplicationController
     inviter_id = Schedule.find_by(token: params[:scheduleToken]).inviter_id
     schedule = Schedule.find_by(token: params[:scheduleToken])
     plan = MakePlan.new(inviter_id: inviter_id, partner_id: partner_id,schedule_id: schedule.id)
-    plan.save!
+    # 誤って二重に登録するのを防止
+    plan.save! if MakePlan.find_by(schedule_id: schedule.id) == nil
   end
 
   def new
