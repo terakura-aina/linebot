@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(e.detail[0])
 
     // ここでshared target pickerを呼び出す
-    const redirect_url = `https://3b380a88031c.ngrok.io/schedules/${e.detail[0].token}?inviter_id=${data_id}`
+    const redirect_url = `https://5c817a6af82c.ngrok.io/schedules/${e.detail[0].token}`
     liff.shareTargetPicker([
       {
       'type': 'text',

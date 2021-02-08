@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
   require 'net/http'
   require 'uri'
   def index
-    @schedules = Schedule.where('finish_planned_day_at > ?', Time.now).order(created_at: :desc)
+    @schedules = Schedule.where('finish_planned_day_at > ?', Time.now).order(created_at: :asc)
   end
 
   def new
@@ -10,10 +10,10 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    @user = User.find(session[:user_id])
+    user = User.find(session[:user_id])
     @schedule = Schedule.new(schedule_params)
-    if @schedule.update(token: SecureRandom.hex(32),inviter_id: @user.id)
-      @schedule.update(token: SecureRandom.hex(32))
+    if @schedule.update(token: SecureRandom.hex(32),inviter_id: user.id)
+      @schedule.update(token: SecureRandom.hex(32),inviter_id: user.id)
       render json: @schedule
       message = {
         "type": "text",
