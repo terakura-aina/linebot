@@ -1,2 +1,23 @@
-<h1>Schedules#index</h1>
-<p>Find me in app/views/schedules/index.html.erb</p>
+h1 デートの予定一覧
+
+table
+  thead
+    tr
+      th 開始時間
+      th 終了予定時間
+      th 場所
+      th やりたいこと
+
+  tbody
+    - if @schedules.present?
+      - @schedules.each do |schedule|
+        - if schedule.answer == 'ok'
+          tr
+            td = l schedule.start_planned_day_at
+            td = l schedule.finish_planned_day_at
+            td = schedule.place
+            td = schedule.other
+        - else
+          p デートの予定はありません。パートナーを誘ってデートしましょう！
+    - else
+      p デートの予定はありません。パートナーを誘ってデートしましょう！

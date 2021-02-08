@@ -3,7 +3,6 @@ class MakePlansController < ApplicationController
   require 'uri'
 
   def create
-    debugger
     idToken = params[:idToken]
     channelId = '1655592642'
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),

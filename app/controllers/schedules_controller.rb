@@ -2,6 +2,7 @@ class SchedulesController < ApplicationController
   require 'net/http'
   require 'uri'
   def index
+    @schedules = Schedule.where('finish_planned_day_at > ?', Time.now).order(created_at: :desc)
   end
 
   def new
