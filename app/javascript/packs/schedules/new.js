@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  const getProfileButton = document.querySelector(".getProfile")
   // 他のメソッドを実行できるようになるための作業
   liff.init({
     liffId: "1655592642-mxP7Mkkp"
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(e.detail[0])
 
     // ここでshared target pickerを呼び出す
-    const redirect_url = `https://5c817a6af82c.ngrok.io/schedules/${e.detail[0].token}`
+    const redirect_url = `https://liff.line.me/1655592642-mxP7Mkkp/schedules/${e.detail[0].token}`
     liff.shareTargetPicker([
       {
       'type': 'text',

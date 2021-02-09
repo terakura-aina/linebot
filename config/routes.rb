@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   resources :users
 
+  root 'schedules#show'
   get '/schedules/:token' => 'schedules#edit'
 end
