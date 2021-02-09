@@ -2,7 +2,8 @@ class SchedulesController < ApplicationController
   require 'net/http'
   require 'uri'
   def index
-    @schedules = Schedule.where('finish_planned_day_at > ?', Time.now).order(created_at: :desc)
+    # 終了予定時間が今よりあと&answerカラムがOKのものを@schedulesに代入
+    @schedules = Schedule.where('finish_planned_day_at > ? and answer = ?', Time.now, 1).order(start_planned_day_at: :asc)
   end
 
   def new
@@ -10,10 +11,10 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    @user = User.find(session[:user_id])
+    user = User.find(session[:user_id])
     @schedule = Schedule.new(schedule_params)
-    if @schedule.update(token: SecureRandom.hex(32),inviter_id: @user.id)
-      @schedule.update(token: SecureRandom.hex(32))
+    if @schedule.update(token: SecureRandom.hex(32),inviter_id: user.id)
+      @schedule.update(token: SecureRandom.hex(32),inviter_id: user.id)
       render json: @schedule
       message = {
         "type": "text",

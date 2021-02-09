@@ -9,15 +9,12 @@ table
       th やりたいこと
 
   tbody
-    - if @schedules.present?
-      - @schedules.each do |schedule|
-        - if schedule.answer == 'ok'
-          tr
-            td = l schedule.start_planned_day_at
-            td = l schedule.finish_planned_day_at
-            td = schedule.place
-            td = schedule.other
-        - else
-          p デートの予定はありません。パートナーを誘ってデートしましょう！
-    - else
-      p デートの予定はありません。パートナーを誘ってデートしましょう！
+    - if @schedules.where(answer: 1).present?
+      - @schedules.where(answer: 1).each do |schedule|
+        tr
+          td = l schedule.start_planned_day_at
+          td = l schedule.finish_planned_day_at
+          td = schedule.place
+          td = schedule.other
+
+= javascript_pack_tag 'schedules/index'
