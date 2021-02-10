@@ -9,6 +9,10 @@ every 1.day, at: ['4:00 pm'] do
   rake 'push:push_line_message'
 end
 
-every 15.minutes do
+every 30.minutes do
   rake 'push:push_mission_inviter'
+end
+
+every 30.minutes do
+  rake 'push:push_mission_partner'
 end

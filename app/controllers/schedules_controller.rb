@@ -31,7 +31,7 @@ class SchedulesController < ApplicationController
       config.channel_secret = ENV['LINE_CHANNEL_SECRET']
       config.channel_token = ENV['LINE_CHANNEL_TOKEN']
       }
-      response = client.push_message(ENV['LINE_CHANNEL_USER_ID'], message)
+      response = client.push_message(@schedule.inviter.line_user_id, message)
       p response
     else
       render status: 400, json: { status: 400, message: 'Bad Request' }
