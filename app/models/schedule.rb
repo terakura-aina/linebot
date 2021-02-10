@@ -1,7 +1,7 @@
 class Schedule < ApplicationRecord
   require 'date'
 
-  has_many :make_plans, dependent: :destroy
+  has_one :make_plan, dependent: :destroy
   belongs_to :inviter, class_name: 'User'
 
   validates :start_planned_day_at, presence: true

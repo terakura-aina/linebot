@@ -3,10 +3,10 @@ h1
 
 = form_with(model: @schedule, id: 'form', local: false) do |f|
   = f.label :start_planned_day_at, :開始時間, class: 'control-label'
-  = f.datetime_field :start_planned_day_at, class: 'form-control'
+  = f.datetime_select :start_planned_day_at, class: 'form-control', :minute_step => 15
   br
-  = f.label :finish_planned_day_at, :終了予定時間, class: 'control-label'
-  = f.datetime_field :finish_planned_day_at, class: 'form-control'
+  = f.label :finish_planned_day_at, :終了予定, class: 'control-label'
+  = f.datetime_select :finish_planned_day_at, class: 'form-control', :minute_step => 15
   br
   = f.label :place, :行き先, class: 'control-label'
   = f.text_field :place, class: 'form-control'

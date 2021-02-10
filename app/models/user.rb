@@ -5,4 +5,5 @@ class User < ApplicationRecord
   has_many :invites, class_name: 'Schedule', foreign_key: 'inviter_id', dependent: :destroy
 
   validates :line_user_id, presence: true
+
 end
