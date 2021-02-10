@@ -44,7 +44,9 @@ class SchedulesController < ApplicationController
 
   def update
     @schedule = Schedule.find(params[:id])
-    @schedule.update!(answer: 1)
+    # 開始時刻より後でもOKできるように、バリデーションスキップ
+    @schedule.assign_attributes(answer: 1)
+    @schedule.save!(validate: false)
     render json: @schedule
     message = {
         "type": "text",
