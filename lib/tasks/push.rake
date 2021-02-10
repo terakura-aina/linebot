@@ -1,12 +1,15 @@
 namespace :push do
   desc "push_line"
 
-  task push_mission_inviter: :environment do
+  task push_mission: :environment do
     schedules = Schedule.where('start_planned_day_at <= ? and finish_planned_day_at > ? and answer = ?', Time.now, Time.now, 1)
+    inviter_mission = Mission.order("RANDOM()").first
+    partner_mission = Mission.order("RANDOM()").first
     schedules.each do |schedule|
+       # inviterにミッションを送る
       message = {
         type: 'text',
-        text: Mission.order("RANDOM()").first.body
+        text: inviter_mission.body
       }
       client = Line::Bot::Client.new { |config|
           config.channel_secret = ENV['LINE_CHANNEL_SECRET']
@@ -14,15 +17,11 @@ namespace :push do
       }
       response = client.push_message(schedule.make_plan.inviter.line_user_id, message)
       p response
-    end
-  end
 
-  task push_mission_partner: :environment do
-    schedules = Schedule.where('start_planned_day_at <= ? and finish_planned_day_at > ? and answer = ?', Time.now, Time.now, 1)
-    schedules.each do |schedule|
+      # partnerにミッションを送る
       message = {
         type: 'text',
-        text: Mission.order("RANDOM()").first.body
+        text: partner_mission.body
       }
       client = Line::Bot::Client.new { |config|
           config.channel_secret = ENV['LINE_CHANNEL_SECRET']
@@ -30,6 +29,9 @@ namespace :push do
       }
       response = client.push_message(schedule.make_plan.partner.line_user_id, message)
       p response
+
+      # TodayMissionテーブルにミッションを保存する
+      TodayMission.create(schedule_id: schedule.id, inviter_mission_id: inviter_mission.id, partner_mission_id: partner_mission.id)
     end
   end
 

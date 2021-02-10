@@ -10,9 +10,5 @@ every 1.day, at: ['4:00 pm'] do
 end
 
 every 30.minutes do
-  rake 'push:push_mission_inviter'
-end
-
-every 30.minutes do
-  rake 'push:push_mission_partner'
+  rake 'push:push_mission'
 end
