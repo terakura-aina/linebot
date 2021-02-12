@@ -1,6 +1,8 @@
 h1
   |デートのお誘い
 
+#error_explanation
+
 = form_with(model: @schedule, id: 'form', local: false) do |f|
   = f.label :start_planned_day_at, :開始時間, class: 'control-label'
   = f.datetime_select :start_planned_day_at, class: 'form-control', :minute_step => 15
