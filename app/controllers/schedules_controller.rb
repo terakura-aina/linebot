@@ -34,7 +34,11 @@ class SchedulesController < ApplicationController
       response = client.push_message(@schedule.inviter.line_user_id, message)
       p response
     else
-      render status: 400, json: { status: 400, message: 'Bad Request' }
+      respond_to do |format|
+        format.html
+        format.js { render 'new' }
+        format.json { render json: { status: 400, message: 'Bad Request' } }
+      end
     end
   end
 

@@ -1,5 +1,11 @@
 ja:
   activerecord:
+    attributes:
+      schedule:
+        start_planned_day_at: 開始時間
+        finish_planned_day_at: 終了予定時間
+        place: 場所
+        other: やりたいこと
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
