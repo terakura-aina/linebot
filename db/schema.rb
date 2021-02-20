@@ -32,11 +32,10 @@ ActiveRecord::Schema.define(version: 2021_02_10_143714) do
   create_table "schedules", force: :cascade do |t|
     t.datetime "start_planned_day_at", null: false
     t.datetime "finish_planned_day_at", null: false
-    t.text "place"
     t.text "other"
+    t.integer "answer", default: 0, null: false
     t.text "token", null: false
     t.integer "inviter_id"
-    t.integer "answer", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["inviter_id"], name: "index_schedules_on_inviter_id"
@@ -44,15 +43,15 @@ ActiveRecord::Schema.define(version: 2021_02_10_143714) do
 
   create_table "today_missions", force: :cascade do |t|
     t.integer "schedule_id", null: false
-    t.integer "inviter_mission_id", null: false
-    t.integer "partner_mission_id", null: false
-    t.integer "inviter_mission_status", default: 0, null: false
-    t.integer "partner_mission_status", default: 0, null: false
+    t.integer "user_id", null: false
+    t.integer "mission_id", null: false
+    t.integer "user_status", null: false
+    t.integer "mission_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["inviter_mission_id"], name: "index_today_missions_on_inviter_mission_id"
-    t.index ["partner_mission_id"], name: "index_today_missions_on_partner_mission_id"
+    t.index ["mission_id"], name: "index_today_missions_on_mission_id"
     t.index ["schedule_id"], name: "index_today_missions_on_schedule_id"
+    t.index ["user_id"], name: "index_today_missions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,7 +64,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_143714) do
   add_foreign_key "make_plans", "users", column: "inviter_id"
   add_foreign_key "make_plans", "users", column: "partner_id"
   add_foreign_key "schedules", "users", column: "inviter_id"
-  add_foreign_key "today_missions", "missions", column: "inviter_mission_id"
-  add_foreign_key "today_missions", "missions", column: "partner_mission_id"
+  add_foreign_key "today_missions", "missions"
   add_foreign_key "today_missions", "schedules"
+  add_foreign_key "today_missions", "users"
 end
