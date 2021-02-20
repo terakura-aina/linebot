@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-  post '/callback' => 'linebot#callback'
-  get '/liff' => 'linebot#liff'
-  get '/dateme' => 'linebot#dateme'
-
-  resources :schedules, only: [:create, :new, :update, :index]
+  resources :users, only: [:create]
+  resources :schedules, only: [:create, :new, :update, :index, :destroy]
   resources :make_plans, only: [:create]
-
-  resources :users
+  resources :today_missions, only: [:update]
 
   root 'schedules#show'
+  get '/missions/:token/:user' => 'missions#index'
   get '/schedules/:token' => 'schedules#edit'
 end

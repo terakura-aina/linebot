@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2021_02_10_143714) do
     t.integer "schedule_id", null: false
     t.integer "inviter_mission_id", null: false
     t.integer "partner_mission_id", null: false
+    t.integer "inviter_mission_status", default: 0, null: false
+    t.integer "partner_mission_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["inviter_mission_id"], name: "index_today_missions_on_inviter_mission_id"

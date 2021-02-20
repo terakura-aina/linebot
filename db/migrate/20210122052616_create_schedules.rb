@@ -6,7 +6,7 @@ class CreateSchedules < ActiveRecord::Migration[6.1]
       t.text :place
       t.text :other
       t.text :token, null: false
-      t.references :inviter, foreign_key: { to_table: :users }
+      t.integer :inviter
       t.integer :answer,null: false, default: 0
 
       t.timestamps
