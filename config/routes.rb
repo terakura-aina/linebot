@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   root 'schedules#show'
   get '/missions/:token/:user' => 'missions#index'
   get '/schedules/:token' => 'schedules#edit'
+  get '/index' => 'users#index'
 end
